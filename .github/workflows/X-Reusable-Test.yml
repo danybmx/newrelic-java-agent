@@ -75,11 +75,11 @@ jobs:
           echo "Current JAVA_HOME = ${JAVA_HOME}"
           echo "ORG_GRADLE_PROJECT_jdk17=$JAVA_HOME" >> $GITHUB_ENV
 
-      # Install 17
+      # Install 18-ea
       - name: Set up Java 18-ea
         uses: actions/setup-java@v2
         with:
-          distribution: 'adopt'
+          distribution: 'temurin'
           java-version: 18-ea
 
       # Save new JDK variable
