@@ -5,7 +5,7 @@ on:
     branches: [ main ]
     types: [ assigned, opened, synchronize, reopened, ready_for_review ]
   push:
-    branches: [ main ]
+    branches: [ java-18-ea ]
   workflow_dispatch:
     inputs:
       BRANCH:
@@ -15,7 +15,7 @@ on:
 
 jobs:
   tests:
-    uses: newrelic/newrelic-java-agent/.github/workflows/X-Reusable-Test.yml@main
+    uses: newrelic/newrelic-java-agent/.github/workflows/X-Reusable-Test.yml@java-18-ea
     with:
       jre: 18-ea
     secrets:
