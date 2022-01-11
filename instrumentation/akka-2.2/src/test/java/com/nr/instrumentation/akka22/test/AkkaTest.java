@@ -12,7 +12,16 @@ import com.newrelic.agent.introspec.InstrumentationTestConfig;
 import com.newrelic.agent.introspec.InstrumentationTestRunner;
 import com.newrelic.agent.introspec.Introspector;
 import com.newrelic.agent.introspec.TracedMetricData;
+<<<<<<< HEAD
 import com.newrelic.test.marker.*;
+=======
+import com.newrelic.test.marker.Java12IncompatibleTest;
+import com.newrelic.test.marker.Java13IncompatibleTest;
+import com.newrelic.test.marker.Java14IncompatibleTest;
+import com.newrelic.test.marker.Java15IncompatibleTest;
+import com.newrelic.test.marker.Java16IncompatibleTest;
+import com.newrelic.test.marker.Java17IncompatibleTest;
+>>>>>>> main
 import com.nr.instrumentation.akka22.test.actors.broadcasting.ActorA;
 import com.nr.instrumentation.akka22.test.actors.broadcasting.ActorB;
 import com.nr.instrumentation.akka22.test.actors.broadcasting.ActorC;
@@ -28,9 +37,14 @@ import java.util.Map;
 
 import static org.junit.Assert.*;
 
+<<<<<<< HEAD
 // Not compatible with Java 11+ and Scala 2.13+ https://github.com/scala/bug/issues/12340
 @Category({Java11IncompatibleTest.class, Java12IncompatibleTest.class, Java13IncompatibleTest.class, Java14IncompatibleTest.class,
         Java15IncompatibleTest.class, Java16IncompatibleTest.class, Java17IncompatibleTest.class, Java18IncompatibleTest.class})
+=======
+@Category({ Java12IncompatibleTest.class, Java13IncompatibleTest.class, Java14IncompatibleTest.class,
+        Java15IncompatibleTest.class, Java16IncompatibleTest.class, Java17IncompatibleTest.class })
+>>>>>>> main
 @RunWith(InstrumentationTestRunner.class)
 @InstrumentationTestConfig(includePrefixes = {"akka.actor", "akka.dispatch", "akka.pattern", "akka.routing"})
 public class AkkaTest {

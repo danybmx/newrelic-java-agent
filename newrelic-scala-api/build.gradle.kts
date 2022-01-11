@@ -62,6 +62,7 @@ tasks {
         setForkEvery(1)
         maxParallelForks = Runtime.getRuntime().availableProcessors()
 
+<<<<<<< HEAD
         val jdk18: String by project
         val jdk17: String by project
         val jdk16: String by project
@@ -95,12 +96,12 @@ tasks {
             executable = "$jdk11/bin/java"
         } else if (project.hasProperty("test10")) {
             executable = "$jdk10/bin/java"
+=======
+        if (project.hasProperty("test10")) {
+>>>>>>> main
             jvmArgs("--add-modules", "java.xml.bind")
         } else if (project.hasProperty("test9")) {
-            executable = "$jdk9/bin/java"
             jvmArgs("--add-modules", "java.xml.bind")
-        } else if (project.hasProperty("test8")) {
-            executable = "$jdk8/bin/java"
         }
 
         minHeapSize = "256m"
