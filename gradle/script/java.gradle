@@ -85,21 +85,6 @@ compileJava.options.bootstrapClasspath = files("${jdkPath}/jre/lib/rt.jar", "${j
 // their own build.gradle to force the use of a specific version of Java (e.g. instrumentation/async-http-client-2.0.0).
 // This could lead to an "Unrecognized option" with the failure "Could not create the Java Virtual Machine".
 test {
-<<<<<<< HEAD
-    if (project.hasProperty("test18")) {
-        executable = jdk18 + '/bin/java'
-        jvmArgs '--add-opens=java.base/java.lang=ALL-UNNAMED',
-                '--add-opens=java.base/java.util=ALL-UNNAMED',
-                '--add-opens=java.base/java.net=ALL-UNNAMED',
-                '--add-opens=java.base/java.io=ALL-UNNAMED',
-                '--add-opens=java.base/sun.net.spi=ALL-UNNAMED',
-                '--add-exports=java.base/sun.net.spi=ALL-UNNAMED',
-                '--add-exports=java.xml/com.sun.org.apache.xalan.internal.xsltc.trax=ALL-UNNAMED'
-        useJUnit {
-            excludeCategories 'com.newrelic.test.marker.Java18IncompatibleTest'
-        }
-    }
-=======
     ext.configureTest = { String jdkName, Closure configuration ->
         // Add an input property so that we differentiate between JDKs with the same version
         inputs.property("test.jdk", jdkName)
@@ -108,8 +93,20 @@ test {
         executable = project.property(jdkName) + '/bin/java'
         configuration.call()
     }
-
->>>>>>> main
+    if (project.hasProperty("test18")) {
+        configureTest("jdk18") {
+            jvmArgs '--add-opens=java.base/java.lang=ALL-UNNAMED',
+                    '--add-opens=java.base/java.util=ALL-UNNAMED',
+                    '--add-opens=java.base/java.net=ALL-UNNAMED',
+                    '--add-opens=java.base/java.io=ALL-UNNAMED',
+                    '--add-opens=java.base/sun.net.spi=ALL-UNNAMED',
+                    '--add-exports=java.base/sun.net.spi=ALL-UNNAMED',
+                    '--add-exports=java.xml/com.sun.org.apache.xalan.internal.xsltc.trax=ALL-UNNAMED'
+            useJUnit {
+                excludeCategories 'com.newrelic.test.marker.Java18IncompatibleTest'
+            }
+        }
+    }
     if (project.hasProperty("test17")) {
         configureTest("jdk17") {
             jvmArgs '--add-opens=java.base/java.lang=ALL-UNNAMED',
